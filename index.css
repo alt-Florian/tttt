@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .prose {
+    max-width: none;
+  }
+  
+  .prose h1 {
+    @apply text-[14px] font-bold mb-3 leading-5;
+  }
+  
+  .prose h2 {
+    @apply text-[13px] font-bold mb-2 leading-5;
+  }
+  
+  .prose p {
+    @apply mb-2 text-[11px] leading-4 text-justify;
+  }
+  
+  .prose ul {
+    @apply list-disc pl-4 mb-2;
+  }
+
+  .prose ul li {
+    @apply text-[11px] leading-4 text-justify mb-1;
+  }
+}
+
+/* Ajustements pour le PDF */
+.pdf-content {
+  @apply leading-4;
+}
+
+.pdf-content ul {
+  @apply my-2;
+}
+
+.pdf-content ul li {
+  @apply mb-1;
+}
+
+/* Ajustements spécifiques pour le PDF */
+.pdf-content .flex {
+  align-items: flex-start;
+}
+
+.pdf-content .w-4 {
+  margin-top: 2px; /* ou ajustez selon vos besoins */
+}
+
+/* ou alternativement, utilisez une classe spécifique pour le header PDF */
+.pdf-header .flex {
+  align-items: flex-start;
+}
+
+.pdf-header .w-4 {
+  margin-top: 2px;
+}
+
+.pdf-generation .pdf-header .flex span.text-\[11px\] {
+  margin-top: -4px; 
+}
+
+/* Dans votre fichier CSS */
+.pdf-generation div[dangerouslySetInnerHTML] ul li::before,
+.pdf-generation .prose ul li::before {
+  content: "•";
+  position: absolute;
+  left: -1rem;
+  top: 0.05rem;
+  font-size: 1.2em;
+}
+
+.pdf-generation div[dangerouslySetInnerHTML] ul,
+.pdf-generation .prose ul {
+  list-style: none;
+  margin-left: 0.2rem;
+}
+
+.pdf-generation div[dangerouslySetInnerHTML] ul li,
+.pdf-generation .prose ul li {
+  position: relative;
+  padding-left: 0.1rem;
+}
+
+.ProseMirror {
+  /* Styles de base */
+  > * + * {
+    margin-top: 0.75em;
+  }
+
+  /* Titres */
+  h1 {
+    font-size: 2em;
+    font-weight: bold;
+  }
+  h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+
+  /* Listes */
+  ul, ol {
+    padding: 0 1rem;
+  }
+
+  /* Citations */
+  blockquote {
+    border-left: 3px solid #ddd;
+    padding-left: 1rem;
+    margin-left: 0;
+  }
+
+  /* Tableaux */
+  table {
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+  }
+  
+  td, th {
+    border: 2px solid #ddd;
+    padding: 0.5rem;
+  }
+}
+.pdf-preview-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espace entre les pages */
+}
+
+.pdf-preview-container > * {
+    background: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+}
